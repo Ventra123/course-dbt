@@ -12,5 +12,5 @@ SELECT
     , order_id
     , event_type
     , product_id
-    , created_at 
+    , created_at
 FROM {{ source('postgres', 'events') }}
