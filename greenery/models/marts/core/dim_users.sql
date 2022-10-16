@@ -10,6 +10,10 @@ with users as (
     select * from {{ ref('stg_events') }}
 )
 
+, addresses as (
+    select * from {{ ref('stg_addresses') }}
+)
+
 , user_sessions as (
     select user_id
         , avg(sessions) as sessions_per_activity_date
@@ -43,7 +47,10 @@ select a.user_id
     , a.last_name
     , a.email
     , a.phone_number
-    , a.address_id
+    , d.address
+    , d.zipcode
+    , d.state
+    , d.country
     , b.first_activity_date
     , b.most_recent_activity_date
     , b.days_since_last_active
@@ -57,6 +64,8 @@ left join user_sessions b
     on a.user_id = b.user_id
 left join user_orders c
     on a.user_id = c.user_id
+join addresses d
+    on a.address_id = d.address_id
 )
 
 select * from final
