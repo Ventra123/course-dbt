@@ -21,16 +21,16 @@ with products as (
 )
 
 , final as (
-select a.product_id
-    , a.product_name
-    , a.price
-    , a.inventory
-    , coalesce(b.total_purchases, 0) as total_purchases
-    , b.first_purchase_date
-    , b.most_recent_purchase_date
-from products a
-left join product_purchases b
-    on a.product_id = b.product_id
+    select a.product_id
+        , a.product_name
+        , a.price
+        , a.inventory
+        , coalesce(b.total_purchases, 0) as total_purchases
+        , b.first_purchase_date
+        , b.most_recent_purchase_date
+    from products a
+    left join product_purchases b
+        on a.product_id = b.product_id
 )
 
 select * from final

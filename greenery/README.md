@@ -57,3 +57,39 @@ from DEV_DB.DBT_SARVARIVENTRAPRAGADA.STG_events
 group by 1,2
 ) as temp
 ```
+
+### Week 2 Project Answers
+
+## Part 1. Models
+
+# What is our user repeat rate?
+Repeat Rate is 79.83%
+```
+select sum(case when orders >= 2 then 1 else 0 end)/count(*) as repeat_rate
+from (
+    select user_id, count(*) as orders
+    from stg_orders
+    group by 1
+) as temp
+```
+# What are good indicators of a user who will likely purchase again? What about indicators of users who are likely NOT to purchase again? If you had more data, what features would you want to look into to answer this question?
+
+Some indicators of users who will likely purchase again
+1. Order contents of first purchase could determine if there is likely a subsequent upsell or cross-sell purchase
+2. Order size of the first order
+3. High activity measured by average number of sessions per day could indicate continued interest
+
+Indicators of users who are not likely to purchase again
+1. If they have "churned", i.e. they have not had any activity in the last X days
+2. If they made the first purchase using a promo code or redeemed a discount
+
+Additional data that could inform the likelihood of repeat purchases
+1. Demographic information of a user like gender and age
+2. The marketing channel through which a user was first acquired
+
+# Explain the marts models you added. Why did you organize the models in the way you did?
+
+The models are intended to be usable for end business users
+They are therefore denormalized and follow the big wide table approach of data modelling to reduce the number of joins that non-technical users have to do do(see )
+However, they are not over-engineered to cover all the possible use cases for end users, with the intention that more fields could be added if upon usage of the models, a need arises to add a pre-calculated measure or dimension to the data model
+Most models are also not aggregated, to retain flexibility

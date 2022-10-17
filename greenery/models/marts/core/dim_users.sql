@@ -42,30 +42,30 @@ with users as (
 )
 
 , final as (
-select a.user_id
-    , a.first_name
-    , a.last_name
-    , a.email
-    , a.phone_number
-    , d.address
-    , d.zipcode
-    , d.state
-    , d.country
-    , b.first_activity_date
-    , b.most_recent_activity_date
-    , b.days_since_last_active
-    , b.sessions_per_activity_date
-    , case when c.user_id is not null then 1 else 0 end as is_customer
-    , c.first_purchase_date
-    , c.most_recent_purchase_date
-    , c.days_since_last_purchase
-from users a
-left join user_sessions b
-    on a.user_id = b.user_id
-left join user_orders c
-    on a.user_id = c.user_id
-join addresses d
-    on a.address_id = d.address_id
+    select a.user_id
+        , a.first_name
+        , a.last_name
+        , a.email
+        , a.phone_number
+        , d.address
+        , d.zipcode
+        , d.state
+        , d.country
+        , b.first_activity_date
+        , b.most_recent_activity_date
+        , b.days_since_last_active
+        , b.sessions_per_activity_date
+        , case when c.user_id is not null then 1 else 0 end as is_customer
+        , c.first_purchase_date
+        , c.most_recent_purchase_date
+        , c.days_since_last_purchase
+    from users a
+    left join user_sessions b
+        on a.user_id = b.user_id
+    left join user_orders c
+        on a.user_id = c.user_id
+    join addresses d
+        on a.address_id = d.address_id
 )
 
 select * from final
