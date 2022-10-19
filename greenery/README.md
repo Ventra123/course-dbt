@@ -91,5 +91,10 @@ Additional data that could inform the likelihood of repeat purchases
 
 The models are intended to be usable for end business users
 They are therefore denormalized and follow the big wide table approach of data modelling to reduce the number of joins that non-technical users have to do do(see )
-However, they are not over-engineered to cover all the possible use cases for end users, with the intention that more fields could be added if upon usage of the models, a need arises to add a pre-calculated measure or dimension to the data model
-Most models are also not aggregated, to retain flexibility
+However, they are not over-engineered to cover all the possible use cases for end users, with the intention that more pre-calculated measures, dimensions or aggregate tables could be added as needs arise upon usage
+Most models are therefore not aggregated, to retain flexibility
+
+## Part 2. Tests
+Currently, my tests are set up to check for basic data quality assessment like ensuring primary keys show up as unique and non null values. I've also used the accepted values test in a couple of instances to check for assumptions that dimensions in the data are static. If this assumption is incorrect or the engineers instrument a new value in that particular dimension, this test will throw an error and rightfully draw our attention towards fixing the problem upstream
+
+## Part 3. Snapshots

@@ -1,0 +1,56 @@
+version: 2
+
+models:
+  - name: dim_products
+    description: Contains one row per product with additional lookup details and calculated metrics 
+    columns:
+      - name: product_id
+        tests:
+          - unique
+          - not_null
+      - name: price
+        tests:
+          - positive_values
+  - name: dim_users
+    description: Contains one row per user along with calculated metrics over the user's history
+    columns:
+      - name: user_id
+        tests:
+          - unique
+          - not_null
+      - name: zipcode
+        tests:
+          - positive_values
+  - name: fact_orders
+    description: Contains one row per order along with details of each order
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+      - name: order_status
+        tests:
+          - accepted_values:
+              values: ['delivered', 'shipped', 'preparing']
+  - name: int_user_orders_daily
+    description: Contains one row per user per day and summarizes total orders and purchases per user, per day
+  - name: fact_user_daily
+    description: Contains one row per user per day and summrizes all activity and purchases per user, per day
+  - name: int_user_sessions
+    description: Contains one row per session id along with calculated metrics
+    columns:
+      - name: session_id
+        tests:
+          - unique
+          - not_null
+  - name: int_user_sessions_daily
+    description: Contains one row per user per day and summarizes total sessions per user per day
+  - name: fact_page_views
+    description: Contains one row per action per session and summarizes session activity
+    columns:
+      - name: event_type
+        tests:
+          - accepted_values:
+              values: ['page_view', 'add_to_cart', 'checkout', 'package_shipped']
+
+

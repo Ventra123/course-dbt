@@ -33,7 +33,6 @@ models:
     columns:
       - name: order_id
         tests:
-          - unique
           - not_null
   - name: stg_products
     description: Contains details of all the types of products
