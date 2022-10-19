@@ -11,7 +11,7 @@ with events as (
 )
 
 , int_sessions as (
-    select * from {{ ref('int_sessions') }}
+    select * from {{ ref('int_user_sessions') }}
 )
 
 

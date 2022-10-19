@@ -13,4 +13,4 @@ with  orders as (
     group by 1,2
 )
 
-select * final
+select * from final
