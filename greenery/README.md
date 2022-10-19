@@ -1,15 +1,15 @@
 Welcome to Sarvari's new dbt project!
 
-### Week 1 Project Answers
+# Week 1 Project Answers
 
 
-# How many users do we have?
+### How many users do we have?
 130
 ```
 select count(distinct user_id) as users
 from DEV_DB.DBT_SARVARIVENTRAPRAGADA.STG_users
 ```
-# On average, how many orders do we receive per hour?
+### On average, how many orders do we receive per hour?
 Average of 7.52 orders
 ```
 select average(orders)
@@ -21,13 +21,13 @@ from DEV_DB.DBT_SARVARIVENTRAPRAGADA.STG_orders
 group by 1,2
 ) as temp
 ```
-# On average, how long does an order take from being placed to being delivered?
+### On average, how long does an order take from being placed to being delivered?
 Average of 3.89 days
 ```
 select avg(timestampdiff('days',created_at, delivered_at)) 
 from DEV_DB.DBT_SARVARIVENTRAPRAGADA.STG_orders
 ```
-# How many users have only made one purchase? Two purchases? Three+ purchases?
+### How many users have only made one purchase? Two purchases? Three+ purchases?
 Note: you should consider a purchase to be a single order. In other words, if a user places one order for 3 products, they are considered to have made 1 purchase.
 One purchase - 25
 Two purchases - 28
@@ -45,7 +45,7 @@ group by 1
 ) as temp
 group by 1
 ```
-# On average, how many unique sessions do we have per hour?
+### On average, how many unique sessions do we have per hour?
 16.32  sessions
 ```
 select avg(sessions)
@@ -58,11 +58,11 @@ group by 1,2
 ) as temp
 ```
 
-### Week 2 Project Answers
+# Week 2 Project Answers
 
 ## Part 1. Models
 
-# What is our user repeat rate?
+### What is our user repeat rate?
 Repeat Rate is 79.83%
 ```
 select sum(case when orders >= 2 then 1 else 0 end)/count(*) as repeat_rate
@@ -72,7 +72,7 @@ from (
     group by 1
 ) as temp
 ```
-# What are good indicators of a user who will likely purchase again? What about indicators of users who are likely NOT to purchase again? If you had more data, what features would you want to look into to answer this question?
+### What are good indicators of a user who will likely purchase again? What about indicators of users who are likely NOT to purchase again? If you had more data, what features would you want to look into to answer this question?
 
 Some indicators of users who will likely purchase again
 1. Order contents of first purchase could determine if there is likely a subsequent upsell or cross-sell purchase
@@ -87,7 +87,7 @@ Additional data that could inform the likelihood of repeat purchases
 1. Demographic information of a user like gender and age
 2. The marketing channel through which a user was first acquired
 
-# Explain the marts models you added. Why did you organize the models in the way you did?
+### Explain the marts models you added. Why did you organize the models in the way you did?
 
 The models are intended to be usable for end business users
 They are therefore denormalized and follow the big wide table approach of data modelling to reduce the number of joins that non-technical users have to do do(see )
