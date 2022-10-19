@@ -1,5 +1,5 @@
 with user_sessions as (
-    select * from int_sessions
+    select * from {{ ref('int_user_sessions')}}
 )
 
 

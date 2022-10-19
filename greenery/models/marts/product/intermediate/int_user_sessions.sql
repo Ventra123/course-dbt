@@ -1,5 +1,5 @@
 with events as (
-    select * from stg_events
+    select * from {{ ref('stg_events') }}
 )
 
 
