@@ -105,3 +105,23 @@ e24985f3-2fb3-456e-a1aa-aaf88f490d70
 914b8929-e04a-40f8-86ee-357f2be3a2a2
 05202733-0e17-4726-97c2-0520c024ab85
 939767ac-357a-4bec-91f8-a7b25edd46c9
+
+
+# Week 3 Project Answers
+
+### What is our overall conversion rate?
+```
+select sum(conversion)/count(*)
+from (
+    select session_id
+        , max(is_purchase_session) as conversion
+    from fact_page_views
+    where event_type = 'page_view'
+    group by 1
+) as temp 
+
+```
+### What is our conversion rate by product?
+```
+
+```
