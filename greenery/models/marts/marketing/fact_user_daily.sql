@@ -17,7 +17,8 @@ with users as (
 )
 
 , final as (
-    select a.date_utc
+    select {{ dbt_utils.surrogate_key(['a.date_utc', 'a.user_id']) }} as sk
+        , a.date_utc
         , a.user_id
         , case when b.user_id is not null then 1 else 0 end as is_active
         , coalesce(total_sessions,0) as total_sessions

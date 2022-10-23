@@ -110,18 +110,23 @@ e24985f3-2fb3-456e-a1aa-aaf88f490d70
 # Week 3 Project Answers
 
 ### What is our overall conversion rate?
+62.4%
 ```
-select sum(conversion)/count(*)
+select sum(is_purchase_session)/count(*) as cvr
 from (
     select session_id
-        , max(is_purchase_session) as conversion
-    from fact_page_views
-    where event_type = 'page_view'
+        , max(is_purchase_session) as is_purchase_session
+    from fact_session_conversions
     group by 1
-) as temp 
-
+)
 ```
 ### What is our conversion rate by product?
 ```
+select product_name
+    , count(*) as sessions
+    , sum(case when purchased_quantity > 0 then 1 else 0 end)/count(*) as cvr
+from fact_session_conversions
+group by 1
+order by 2 desc
 
 ```
