@@ -14,9 +14,8 @@ with events as (
     select * from {{ ref('int_user_sessions') }}
 )
 
-
 , final as (
-select {{ dbt_utils.surrogate_key(['session_id', 'created_at', 'page_url']) }} as sk
+select {{ dbt_utils.surrogate_key(['a.session_id', 'a.created_at', 'a.page_url']) }} as sk
     , date(created_at) as date_utc
     , a.user_id
     , a.session_id

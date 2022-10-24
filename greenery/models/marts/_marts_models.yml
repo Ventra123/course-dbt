@@ -71,5 +71,13 @@ models:
         tests:
           - accepted_values:
               values: ['page_view', 'add_to_cart', 'checkout', 'package_shipped']
+  - name: fact_session_conversions
+    description: Contains one two per session and product viewed along with details on if the product was purchased
+    columns:
+      - name: sk
+        tests:
+          - unique
+          - not_null
+
 
 

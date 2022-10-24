@@ -29,10 +29,9 @@ with events as (
         group by 1,2,3,4
 )
 
-
-
 , final as (
-    select a.session_id
+    select {{ dbt_utils.surrogate_key(['session_id', 'product_name']) }}
+        , a.session_id
         , a.user_id
         , c.product_name
         , c.price
@@ -46,7 +45,6 @@ with events as (
     join products c
         on a.product_id = c.product_id
 )
-
 
 select * from final
 

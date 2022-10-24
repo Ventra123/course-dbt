@@ -11,7 +11,7 @@ with user_sessions as (
         , sum(session_duration_mins) as total_session_time_mins
         , sum(total_page_views) as total_page_views
     from user_sessions
-    group by 1,2
+    group by 1,2,3
 )
 
 select * from final

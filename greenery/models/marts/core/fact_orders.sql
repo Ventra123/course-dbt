@@ -16,14 +16,12 @@ with orders as (
     select * from {{ ref('stg_addresses') }}
 )
 
-
 , order_item_count as (
     select order_id
     , count(*) as total_items
     from order_items
     group by 1
 )
-
 
 , final as (
     select date(a.created_at) as date_utc

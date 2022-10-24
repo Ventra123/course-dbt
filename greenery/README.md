@@ -135,10 +135,11 @@ order by 2 desc
 
 ## Part 2. Create a macro to simplify part of a model
 
-## Part 3. Add a post hook to your project to apply grants to the role “reporting
+## Part 3. Add a post hook to your project to apply grants to the role “reporting"
+Done
 
 ## Part 4. Install a package (i.e. dbt-utils, dbt-expectations) and apply one or more of the macros to your project
-I used dbt utils to add surrogate keys to all the tables which didn't already have a well defined primary key. I thenadded unique and not null tests to these newly generated surrogate keys to ensure that the model assumptions hold true and that the table grain is well defined.
+I used dbt utils to add surrogate keys to all the tables which didn't already have a well defined primary key. I then added unique and not null tests to these newly generated surrogate keys to ensure that the model assumptions hold true and that the table grain is well defined.
 
 ## Part 5. dbt Snapshots
 The following orders' status changed from preparing to shipped

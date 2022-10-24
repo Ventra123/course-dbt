@@ -11,7 +11,7 @@ with  orders as (
         , sum(purchases) over (partition by user_id order by date_utc) as purchases_to_date
         , sum(spend_usd) over (partition by user_id order by date_utc) as spend_to_date
     from orders
-    group by 1,2
+    group by 1,2,3
 )
 
 select * from final
