@@ -134,6 +134,7 @@ order by 2 desc
 ```
 
 ## Part 2. Create a macro to simplify part of a model
+I created a macro called agg_by_event_type to aggregate page views, add to carts and checkouts in the `int_user_sessions` model. Though the use of macros in this particular use case seems trivial, I can see how macros enable reusability of code through your project
 
 ## Part 3. Add a post hook to your project to apply grants to the role “reporting"
 Done
