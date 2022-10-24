@@ -16,7 +16,8 @@ with events as (
 
 
 , final as (
-select date(created_at) as date_utc
+select {{ dbt_utils.surrogate_key(['session_id', 'created_at', 'page_url']) }} as sk
+    , date(created_at) as date_utc
     , a.user_id
     , a.session_id
     , c.session_duration_mins

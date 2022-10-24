@@ -34,8 +34,18 @@ models:
               values: ['delivered', 'shipped', 'preparing']
   - name: int_user_orders_daily
     description: Contains one row per user per day and summarizes total orders and purchases per user, per day
+    columns:
+      - name: sk
+        tests:
+          - unique
+          - not_null
   - name: fact_user_daily
     description: Contains one row per user per day and summrizes all activity and purchases per user, per day
+    columns:
+      - name: sk
+        tests:
+          - unique
+          - not_null
   - name: int_user_sessions
     description: Contains one row per session id along with calculated metrics
     columns:
@@ -45,9 +55,18 @@ models:
           - not_null
   - name: int_user_sessions_daily
     description: Contains one row per user per day and summarizes total sessions per user per day
-  - name: fact_page_views
-    description: Contains one row per action per session and summarizes session activity
     columns:
+      - name: sk
+        tests:
+          - unique
+          - not_null
+  - name: fact_page_views
+    description: Contains one row per page view per session and summarizes session activity
+    columns:
+      - name: sk
+        tests:
+          - unique
+          - not_null
       - name: event_type
         tests:
           - accepted_values:

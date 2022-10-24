@@ -109,6 +109,8 @@ e24985f3-2fb3-456e-a1aa-aaf88f490d70
 
 # Week 3 Project Answers
 
+## Part 1. Create new models to answer the first two questions 
+
 ### What is our overall conversion rate?
 62.4%
 ```
@@ -130,3 +132,20 @@ group by 1
 order by 2 desc
 
 ```
+
+## Part 2. Create a macro to simplify part of a model
+
+## Part 3. Add a post hook to your project to apply grants to the role “reporting
+
+## Part 4. Install a package (i.e. dbt-utils, dbt-expectations) and apply one or more of the macros to your project
+I used dbt utils to add surrogate keys to all the tables which didn't already have a well defined primary key. I thenadded unique and not null tests to these newly generated surrogate keys to ensure that the model assumptions hold true and that the table grain is well defined.
+
+## Part 5. dbt Snapshots
+The following orders' status changed from preparing to shipped
+
+5741e351-3124-4de7-9dff-01a448e7dfd4
+, e24985f3-2fb3-456e-a1aa-aaf88f490d70
+, 8385cfcd-2b3f-443a-a676-9756f7eb5404
+, 914b8929-e04a-40f8-86ee-357f2be3a2a2
+, 05202733-0e17-4726-97c2-0520c024ab85
+, 939767ac-357a-4bec-91f8-a7b25edd46c9

@@ -3,7 +3,8 @@ with  orders as (
 )
 
 , final as (
-    select date_utc
+    select {{ dbt_utils.surrogate_key(['date_utc', 'user_id']) }}
+        , date_utc
         , user_id
         , count(*) as purchases
         , sum(order_cost) as spend_usd
